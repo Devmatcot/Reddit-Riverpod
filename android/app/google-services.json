@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "300507568093",
+    "project_id": "flutter-reddit-fb542",
+    "storage_bucket": "flutter-reddit-fb542.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300507568093:android:a6f57c75cd2cf966178834",
+        "android_client_info": {
+          "package_name": "com.example.flutter_reddit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300507568093-jld55epfcejlrlgd5fhm155igflupf3k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_reddit",
+            "certificate_hash": "380b440033f915de4ca11dbf0acdbefe7ef7d4aa"
+          }
+        },
+        {
+          "client_id": "300507568093-cq9u1ocd3mvqt90licui7g2scpmgtqq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeuW_O5flVTE6kSH3iqkTeUkBmzKgk4J8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300507568093-cq9u1ocd3mvqt90licui7g2scpmgtqq5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "300507568093-krpddd40mr7cck0snnkd6r41u1ifp2qt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.riverpodFlutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300507568093:android:97c5284dcdf5ca10178834",
+        "android_client_info": {
+          "package_name": "com.example.riverpod_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300507568093-cq9u1ocd3mvqt90licui7g2scpmgtqq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeuW_O5flVTE6kSH3iqkTeUkBmzKgk4J8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300507568093-cq9u1ocd3mvqt90licui7g2scpmgtqq5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "300507568093-krpddd40mr7cck0snnkd6r41u1ifp2qt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.riverpodFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
