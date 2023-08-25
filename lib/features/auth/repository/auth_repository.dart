@@ -19,9 +19,6 @@ final authRepositoryProvider = Provider((ref) {
       googleSignIn: ref.read(googleProvider));
 });
 
-
-
-
 class AuthRepository {
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
@@ -36,6 +33,7 @@ class AuthRepository {
 
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
+  Stream<User?> get authStateChange => _auth.authStateChanges();
 
   FutureEither<UserModel> singWithGoogle() async {
     try {
@@ -66,6 +64,8 @@ class AuthRepository {
         // userModel.toString().log();
       }
       return right(userModel);
+    } on FirebaseException catch (e) {
+      throw e.message!;
     } catch (e) {
       e.log();
       return left(Failure(e.toString()));

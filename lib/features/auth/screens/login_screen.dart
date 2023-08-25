@@ -44,7 +44,7 @@ class LoginScreen extends ConsumerWidget {
               height: 400,
             ),
           ),
-          ref.watch(authControllerProvider)? CircularProgressIndicator(): SignInButton()
+          ref.watch(authControllerProvider)? const CircularProgressIndicator():const SignInButton()
         ],
       ),
     );
