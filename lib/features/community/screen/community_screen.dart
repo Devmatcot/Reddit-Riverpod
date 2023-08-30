@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reddit/core/common/loader.dart';
-import 'package:flutter_reddit/core/extenstion/log.dart';
 import 'package:flutter_reddit/core/extenstion/widget.dart';
 import 'package:flutter_reddit/features/auth/controller/auth_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,7 +35,7 @@ class CommunityScreen extends ConsumerWidget {
                     ),
                   ),
                   SliverPadding(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     sliver: SliverList(
                       delegate: SliverChildListDelegate(
                         [
@@ -78,7 +77,7 @@ class CommunityScreen extends ConsumerWidget {
                   )
                 ];
               },
-              body: Text('Displaying Group post')),
+              body: const Text('Displaying Group post')),
           error: (e, s) {
             return Text(e.toString());
           },

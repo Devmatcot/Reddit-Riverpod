@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reddit/core/common/loader.dart';
-import 'package:flutter_reddit/core/constants/constants.dart';
 import 'package:flutter_reddit/core/extenstion/widget.dart';
 import 'package:flutter_reddit/theme/pallete.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +16,7 @@ class CreateCommunityScreen extends ConsumerStatefulWidget {
 }
 
 class _CommunityScreenState extends ConsumerState<CreateCommunityScreen> {
-  TextEditingController _communityController = TextEditingController();
+  final TextEditingController _communityController = TextEditingController();
   @override
   void dispose() {
     super.dispose();

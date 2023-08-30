@@ -5,7 +5,7 @@ import 'package:routemaster/routemaster.dart';
 
 import 'features/community/screen/community_screen.dart';
 import 'features/community/screen/create_community.dart';
-import 'features/community/screen/edit_group_screen.dart';
+import 'features/community/screen/edit_communities_screen.dart';
 import 'features/community/screen/mod_tools_screen.dart';
 import 'features/home/screens/home_screen.dart';
 
@@ -29,8 +29,8 @@ final logInRoute = RouteMap(
             child: ModToolsScreen(
           name: route.pathParameters['name']!,
         )),
-    '/edit-group/:name': (route) => MaterialPage(
-            child: EditGroupScreen(
+    '/edit-community/:name': (route) => MaterialPage(
+            child: EditCommunitiesScreen(
           name: route.pathParameters['name']!,
         ))
   },

@@ -4,6 +4,7 @@ import 'package:flutter_reddit/features/community/controller/community_controlle
 import 'package:flutter_reddit/model/communities_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
+
 import '../../community/screen/create_community.dart';
 
 class CommunitiesListDrawer extends ConsumerWidget {
@@ -45,7 +46,7 @@ class CommunitiesListDrawer extends ConsumerWidget {
                       );
                     },
                     error: (_, stack) => Text(stack.toString()),
-                    loading: () => Loader()))
+                    loading: () => const Center(child: Loader())))
           ],
         ),
       ),

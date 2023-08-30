@@ -8,20 +8,20 @@ class ModToolsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Community'),
+        title: const Text('Edit Community'),
       ),
       body: Column(
         children: [
-          ListTile(
+          const ListTile(
             title: Text('Add Moderator'),
             leading: Icon(Icons.add_moderator),
           ),
           ListTile(
-            title: Text('Edit Group'),
+            title: const Text('Edit Community'),
             onTap: () {
-              Routemaster.of(context).push('/edit-group/$name');
+              Routemaster.of(context).push('/edit-community/$name');
             },
-            leading: Icon(Icons.edit),
+            leading: const Icon(Icons.edit),
           )
         ],
       ),

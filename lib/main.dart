@@ -7,9 +7,7 @@ import 'package:flutter_reddit/routes.dart';
 import 'package:flutter_reddit/theme/pallete.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
-
 import 'core/common/loader.dart';
-import 'features/auth/screens/login_screen.dart';
 import 'model/user_model.dart';
 
 void main() async {
@@ -20,6 +18,8 @@ void main() async {
 
 class MyApp extends ConsumerWidget {
   UserModel? userModel;
+
+  MyApp({super.key});
   void getData(WidgetRef ref, User data) async {
     userModel = await ref
         .watch(authControllerProvider.notifier)
@@ -28,13 +28,13 @@ class MyApp extends ConsumerWidget {
     ref.read(userProvider.notifier).update((state) => userModel);
   }
 
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(authStateChangeProvider).when(
         data: (user) {
           return MaterialApp.router(
             title: 'Reddit App',
-            
             theme: Pallete.darkModeAppTheme,
             debugShowCheckedModeBanner: false,
             // home: const LoginScreen(),
