@@ -26,6 +26,7 @@ class CommunitiesListDrawer extends ConsumerWidget {
                 Routemaster.of(context).push(CreateCommunityScreen.path);
               },
             ),
+            //----
             Expanded(
                 child: ref.watch(userCommunityProvider).when(
                     data: (communities) {

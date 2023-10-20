@@ -14,6 +14,7 @@ class Pallete {
     scaffoldBackgroundColor: blackColor,
     cardColor: greyColor,
     useMaterial3: true,
+   
     appBarTheme: const AppBarTheme(
       backgroundColor: drawerColor,
       iconTheme: IconThemeData(

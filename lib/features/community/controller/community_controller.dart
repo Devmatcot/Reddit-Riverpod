@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_reddit/core/constants/constants.dart';
 import 'package:flutter_reddit/features/auth/controller/auth_controller.dart';
 import 'package:flutter_reddit/model/communities_model.dart';
+import 'package:flutter_reddit/provider/failure.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:routemaster/routemaster.dart';
-
 import '../../../core/utilis/snackbar.dart';
 import '../../../provider/storage_repostory_provider.dart';
 import '../repository/community_repository.dart';
@@ -27,6 +28,10 @@ final userCommunityProvider = StreamProvider((ref) {
 final getCommunityByNameProvider = StreamProvider.family((ref, String name) {
   final community = ref.watch(communityControlerProvider.notifier);
   return community.getCommunityByName(name);
+});
+
+final searchCommunityProvider = StreamProvider.family((ref, String query) {
+  return ref.watch(communityControlerProvider.notifier).searchCommunity(query);
 });
 
 class CommunityController extends StateNotifier<bool> {
@@ -90,4 +95,40 @@ class CommunityController extends StateNotifier<bool> {
     res.fold((l) => showSnackBar(context, l.message),
         (r) => Routemaster.of(context).pop());
   }
+
+  Stream<List<Community>> searchCommunity(String query) {
+    return _communityRepostory.searchCommunity(query);
+  }
+
+  leaveCommunity(
+    BuildContext context,
+    Community community,
+  ) async {
+    String userId = _ref.read(userProvider)!.uid;
+    final res =
+        await _communityRepostory.leaveCommunity(community.name, userId);
+    res.fold((l) => showSnackBar(context, l.message),
+        (r) => showSnackBar(context, 'successfully leave the group'));
+  }
+
+  joinCommunity(
+    BuildContext context,
+    Community community,
+  ) async {
+    String userId = _ref.read(userProvider)!.uid;
+    Either<Failure, void> res;
+    if (community.members.contains(userId)) {
+      res = await _communityRepostory.leaveCommunity(community.name, userId);
+    } else {
+      res = await _communityRepostory.joinCommunity(community.name, userId);
+    }
+    res.fold((l) => showSnackBar(context, l.message), (r) {
+      if (community.members.contains(userId)) {
+        showSnackBar(context, 'successfully leaved the group');
+      } else {
+        showSnackBar(context, 'successfully joined the group');
+      }
+    });
+  }
+
 }

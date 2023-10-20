@@ -63,13 +63,23 @@ class CommunityScreen extends ConsumerWidget {
                                       },
                                       child: const Text('Mod Tools'))
                                   : OutlinedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        ref
+                                            .read(communityControlerProvider
+                                                .notifier)
+                                            .joinCommunity(context, community);
+                                      },
                                       child: Text(
                                           community.members.contains(user.uid)
                                               ? 'Joined'
                                               : 'Join'),
                                     )
                             ],
+                          ),
+                          Text(
+                            '${community.members.length} members',
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           )
                         ],
                       ),
@@ -81,7 +91,7 @@ class CommunityScreen extends ConsumerWidget {
           error: (e, s) {
             return Text(e.toString());
           },
-          loading: () => const Loader()),
+          loading: () => const Center(child: Loader())),
     );
   }
 }
