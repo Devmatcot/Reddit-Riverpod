@@ -34,6 +34,11 @@ final searchCommunityProvider = StreamProvider.family((ref, String query) {
   return ref.watch(communityControlerProvider.notifier).searchCommunity(query);
 });
 
+final getAllCommunity = FutureProviderFamily((ref, BuildContext context) {
+  final community = ref.watch(communityControlerProvider.notifier);
+  return community.getAllComunity(context);
+});
+
 class CommunityController extends StateNotifier<bool> {
   final CommunityRepository _communityRepostory;
   final StorageRepository _storageRepository;
@@ -131,4 +136,11 @@ class CommunityController extends StateNotifier<bool> {
     });
   }
 
+  Future<List<Community>> getAllComunity(BuildContext context) async {
+    // state = true;
+    final res = await _communityRepostory.getAllCommunity();
+    // res.fold((l) => showSnackBar(context, l.message), (r) => r);
+    return res;
+    // state = false;
+  }
 }

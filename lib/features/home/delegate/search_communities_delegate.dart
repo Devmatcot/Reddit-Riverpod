@@ -26,7 +26,22 @@ class SearchCommunityDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return const SizedBox();
+    return ref.watch(getAllCommunity(context)).when(
+        data: (communities) => ListView.builder(
+              itemCount: communities.length,
+              itemBuilder: (context, index) {
+                final community = communities[index];
+                return ListTile(
+                  onTap: () => navigateToCommunity(context, community),
+                  title: Text('r/${community.name}'),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(community.avatar),
+                  ),
+                );
+              },
+            ),
+        error: (e, s) => Text(e.toString()),
+        loading: () => const Center(child: Loader()));
   }
 
   @override
@@ -52,4 +67,11 @@ class SearchCommunityDelegate extends SearchDelegate {
           ),
         );
   }
+
+  // @override
+  // Widget buildSuggestions(BuildContext context) {
+  //   return Container(
+  //     child: const Text('Food'),
+  //   );
+  // }
 }

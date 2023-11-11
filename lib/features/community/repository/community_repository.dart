@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_reddit/core/constants/firebase_constants.dart';
 import 'package:flutter_reddit/provider/failure.dart';
@@ -108,6 +110,23 @@ class CommunityRepository {
       throw e.message!;
     } catch (e) {
       return left(Failure(e.toString()));
+    }
+  }
+
+  Future<List<Community>> getAllCommunity() async {
+    try {
+      List<Community> allComunity = [];
+      final doc = await _communties.get();
+      log(doc.docs.first.data().toString());
+      for (var element in doc.docs) {
+        allComunity
+            .add(Community.fromMap(element.data() as Map<String, dynamic>));
+      }
+      // return right(allComunity);
+      return allComunity;
+    } catch (e) {
+      return [];
+      // return left(Failure(e.toString()));
     }
   }
 }

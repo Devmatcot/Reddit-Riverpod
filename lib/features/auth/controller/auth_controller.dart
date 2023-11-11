@@ -22,9 +22,11 @@ final getUserDataProvider = StreamProvider.family((ref, String uid) {
   return authController.getUserData(uid);
 });
 
+
+
 class AuthController extends StateNotifier<bool> {
-  AuthRepository _authRepository;
-  Ref _ref;
+ final AuthRepository _authRepository;
+ final Ref _ref;
   AuthController({required AuthRepository authRepository, required Ref ref})
       : _authRepository = authRepository,
         _ref = ref,
