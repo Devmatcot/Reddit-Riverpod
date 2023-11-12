@@ -12,9 +12,12 @@ class ModToolsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const ListTile(
-            title: Text('Add Moderator'),
-            leading: Icon(Icons.add_moderator),
+          ListTile(
+            title: const Text('Add Moderator'),
+            leading: const Icon(Icons.add_moderator),
+            onTap: () {
+              Routemaster.of(context).push('/add-mod/$name');
+            },
           ),
           ListTile(
             title: const Text('Edit Community'),

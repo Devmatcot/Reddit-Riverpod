@@ -3,13 +3,14 @@ import 'package:flutter_reddit/core/extenstion/widget.dart';
 import 'package:flutter_reddit/features/auth/controller/auth_controller.dart';
 import 'package:flutter_reddit/theme/pallete.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 
 class ProfileDrawer extends ConsumerWidget {
   const ProfileDrawer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider)!;
+    final user = ref.watch(userProvider);
     return Drawer(
       child: SafeArea(
         child: Column(
@@ -29,7 +30,7 @@ class ProfileDrawer extends ConsumerWidget {
               title: const Text('My Profile'),
               leading: const Icon(Icons.person_4),
               onTap: () {
-                //Routemaster.of(context).push(CreateCommunityScreen.path);
+                Routemaster.of(context).push('/u/${user.uid}');
               },
             ),
             ListTile(

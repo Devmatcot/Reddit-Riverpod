@@ -9,8 +9,15 @@ import '../../../model/user_model.dart';
 final authControllerProvider = StateNotifierProvider<AuthController, bool>(
     (ref) => AuthController(
         authRepository: ref.watch(authRepositoryProvider), ref: ref));
-final userProvider = StateProvider<UserModel?>((ref) {
-  return null;
+final userProvider = StateProvider<UserModel>((ref) {
+  return UserModel(
+      name: '',
+      profilePic: '',
+      banner: '',
+      uid: '',
+      isAuthenticated: false,
+      karma: 0,
+      awards: []);
 });
 final authStateChangeProvider = StreamProvider((ref) {
   final authController = ref.watch(authControllerProvider.notifier);
@@ -22,11 +29,9 @@ final getUserDataProvider = StreamProvider.family((ref, String uid) {
   return authController.getUserData(uid);
 });
 
-
-
 class AuthController extends StateNotifier<bool> {
- final AuthRepository _authRepository;
- final Ref _ref;
+  final AuthRepository _authRepository;
+  final Ref _ref;
   AuthController({required AuthRepository authRepository, required Ref ref})
       : _authRepository = authRepository,
         _ref = ref,

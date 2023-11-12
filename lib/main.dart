@@ -25,7 +25,7 @@ class MyApp extends ConsumerWidget {
         .watch(authControllerProvider.notifier)
         .getUserData(data.uid)
         .first;
-    ref.read(userProvider.notifier).update((state) => userModel);
+    ref.read(userProvider.notifier).update((state) => userModel!);
   }
 
 

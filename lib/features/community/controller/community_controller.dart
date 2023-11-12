@@ -8,6 +8,7 @@ import 'package:flutter_reddit/provider/failure.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:routemaster/routemaster.dart';
+
 import '../../../core/utilis/snackbar.dart';
 import '../../../provider/storage_repostory_provider.dart';
 import '../repository/community_repository.dart';
@@ -54,7 +55,7 @@ class CommunityController extends StateNotifier<bool> {
 
   void createCommunity(BuildContext context, String name) async {
     state = true;
-    String uid = _ref.watch(userProvider)?.uid ?? "";
+    String uid = _ref.watch(userProvider).uid;
     Community community = Community(
         id: name,
         name: name,
@@ -71,7 +72,7 @@ class CommunityController extends StateNotifier<bool> {
   }
 
   Stream<List<Community>> getUserCommunity() {
-    String uid = _ref.read(userProvider)!.uid;
+    String uid = _ref.read(userProvider).uid;
     return _communityRepostory.getUserCommunities(uid);
   }
 
@@ -109,7 +110,7 @@ class CommunityController extends StateNotifier<bool> {
     BuildContext context,
     Community community,
   ) async {
-    String userId = _ref.read(userProvider)!.uid;
+    String userId = _ref.read(userProvider).uid;
     final res =
         await _communityRepostory.leaveCommunity(community.name, userId);
     res.fold((l) => showSnackBar(context, l.message),
@@ -120,7 +121,7 @@ class CommunityController extends StateNotifier<bool> {
     BuildContext context,
     Community community,
   ) async {
-    String userId = _ref.read(userProvider)!.uid;
+    String userId = _ref.read(userProvider).uid;
     Either<Failure, void> res;
     if (community.members.contains(userId)) {
       res = await _communityRepostory.leaveCommunity(community.name, userId);
@@ -142,5 +143,13 @@ class CommunityController extends StateNotifier<bool> {
     // res.fold((l) => showSnackBar(context, l.message), (r) => r);
     return res;
     // state = false;
+  }
+
+  addMod(BuildContext context, String communityName, List<String> uid) async {
+    final res = await _communityRepostory.addMod(communityName, uid);
+    res.fold((l) => showSnackBar(context, l.message), (r) {
+      Routemaster.of(context).pop();
+      return showSnackBar(context, 'successfully add mods to group');
+    });
   }
 }

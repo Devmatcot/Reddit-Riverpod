@@ -55,7 +55,7 @@ class CommunityScreen extends ConsumerWidget {
                                 style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              community.mods.contains(user!.uid)
+                              community.mods.contains(user.uid)
                                   ? OutlinedButton(
                                       onPressed: () {
                                         Routemaster.of(context).push(
